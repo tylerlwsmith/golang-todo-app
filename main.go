@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"os"
 
@@ -20,5 +21,12 @@ func main() {
 		p = "3000"
 	}
 
-	http.ListenAndServe(":"+p, r)
+	// Allow app to print listening message after starting the server.
+	// https://stackoverflow.com/a/48250354/7759523
+	done := make(chan bool)
+
+	go http.ListenAndServe(":"+p, r)
+	log.Printf("Now listening at http://localhost:%v", p)
+
+	<-done
 }
