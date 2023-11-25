@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 
 	"github.com/gorilla/mux"
 )
@@ -14,5 +15,10 @@ func main() {
 		fmt.Fprint(w, "<h1>Hello, world!</h1>")
 	})
 
-	http.ListenAndServe(":3000", r)
+	p := os.Getenv("PORT")
+	if p == "" {
+		p = "3000"
+	}
+
+	http.ListenAndServe(":"+p, r)
 }
