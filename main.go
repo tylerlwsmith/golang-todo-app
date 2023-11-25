@@ -13,8 +13,12 @@ func main() {
 	r := mux.NewRouter()
 
 	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		http.Redirect(w, r, "/todos", http.StatusSeeOther)
+	}).Methods("GET")
+
+	r.HandleFunc("/todos", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, "<h1>Hello, world!</h1>")
-	})
+	}).Methods("GET")
 
 	p := os.Getenv("PORT")
 	if p == "" {
