@@ -1,12 +1,13 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"os"
 
 	"github.com/gorilla/mux"
+
+	"golang-todo-app/handlers"
 )
 
 func main() {
@@ -16,9 +17,7 @@ func main() {
 		http.Redirect(w, r, "/todos", http.StatusSeeOther)
 	}).Methods("GET")
 
-	r.HandleFunc("/todos", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprint(w, "<h1>Hello, world!</h1>")
-	}).Methods("GET")
+	r.HandleFunc("/todos", handlers.Index).Methods("GET")
 
 	p := os.Getenv("PORT")
 	if p == "" {
