@@ -13,10 +13,7 @@ import (
 func main() {
 	r := mux.NewRouter()
 
-	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		http.Redirect(w, r, "/todos", http.StatusSeeOther)
-	}).Methods("GET")
-
+	r.HandleFunc("/", handlers.RedirectToIndex).Methods("GET")
 	r.HandleFunc("/todos", handlers.Index).Methods("GET")
 
 	p := os.Getenv("PORT")
