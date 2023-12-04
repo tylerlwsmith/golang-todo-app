@@ -3,6 +3,8 @@ package handlers
 import (
 	"html/template"
 	"net/http"
+
+	"golang-todo-app/embeds"
 )
 
 type Page struct {
@@ -13,7 +15,7 @@ type Page struct {
 var tmpl *template.Template
 
 func init() {
-	tmpl = template.Must(template.ParseGlob("templates/*.html"))
+	tmpl = template.Must(template.ParseFS(embeds.TmplFiles, "templates/*.html"))
 }
 
 func RedirectToIndex(w http.ResponseWriter, r *http.Request) {
