@@ -6,6 +6,7 @@ import (
 
 	"golang-todo-app/assets"
 	"golang-todo-app/models"
+	"golang-todo-app/repositories"
 )
 
 var tmpl *template.Template
@@ -20,13 +21,8 @@ func RedirectToIndex(w http.ResponseWriter, r *http.Request) {
 
 func Index(w http.ResponseWriter, r *http.Request) {
 	tmpl.ExecuteTemplate(w, "index.html", models.Page{
-		Title:   "Hello, world!",
-		Content: "I am a page.",
-		PageData: []models.Todo{
-			{
-				Id:          1,
-				Description: "First Todo",
-			},
-		},
+		Title:    "Hello, world!",
+		Content:  "I am a page.",
+		PageData: repositories.GetTodos(),
 	})
 }
