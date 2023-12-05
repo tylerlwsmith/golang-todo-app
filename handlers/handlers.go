@@ -5,12 +5,8 @@ import (
 	"net/http"
 
 	"golang-todo-app/assets"
+	"golang-todo-app/models"
 )
-
-type Page struct {
-	Title   string
-	Content string
-}
 
 var tmpl *template.Template
 
@@ -23,7 +19,7 @@ func RedirectToIndex(w http.ResponseWriter, r *http.Request) {
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
-	tmpl.ExecuteTemplate(w, "index.html", Page{
+	tmpl.ExecuteTemplate(w, "index.html", models.Page{
 		Title:   "Hello, world!",
 		Content: "I am a page.",
 	})
