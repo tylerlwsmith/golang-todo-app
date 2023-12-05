@@ -22,5 +22,11 @@ func Index(w http.ResponseWriter, r *http.Request) {
 	tmpl.ExecuteTemplate(w, "index.html", models.Page{
 		Title:   "Hello, world!",
 		Content: "I am a page.",
+		PageData: []models.Todo{
+			{
+				Id:          1,
+				Description: "First Todo",
+			},
+		},
 	})
 }

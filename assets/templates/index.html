@@ -1,3 +1,9 @@
 <h1>{{ .Title }}</h1>
 
 <p>{{ .Content }}</p>
+
+<ul>
+  {{ range .PageData }}
+  <li>{{ .Description }}</li>
+  {{ end }}
+</ul>
