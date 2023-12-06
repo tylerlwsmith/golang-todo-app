@@ -1,9 +1,13 @@
-<h1>{{ .Title }}</h1>
+{{ template "layout.go.html" . }}
 
-<p>{{ .Content }}</p>
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
 
-<ul>
-  {{ range .PageData }}
-    <li>{{ .Description }}</li>
-  {{ end }}
-</ul>
+  <p>{{ .Content }}</p>
+
+  <ul>
+    {{ range .PageData }}
+      <li>{{ .Description }}</li>
+    {{ end }}
+  </ul>
+{{ end }}
