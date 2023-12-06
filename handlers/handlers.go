@@ -20,7 +20,7 @@ func RedirectToIndex(w http.ResponseWriter, r *http.Request) {
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
-	tmpl.ExecuteTemplate(w, "index.html", models.Page{
+	tmpl.ExecuteTemplate(w, "index.go.html", models.Page{
 		Title:    "Hello, world!",
 		Content:  "I am a page.",
 		PageData: repositories.GetTodos(),
