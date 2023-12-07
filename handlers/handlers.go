@@ -9,11 +9,7 @@ import (
 	"golang-todo-app/repositories"
 )
 
-var tmpl *template.Template
-
-func init() {
-	tmpl = template.Must(template.ParseFS(assets.TmplFiles, "templates/*.html"))
-}
+var tmpl = template.Must(template.ParseFS(assets.TmplFiles, "templates/*.html"))
 
 func RedirectToIndex(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/todos", http.StatusSeeOther)
