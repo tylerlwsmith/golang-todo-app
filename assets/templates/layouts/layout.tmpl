@@ -8,13 +8,13 @@
   </head>
   <body>
     {{ block "body" . }}
-      {{ template "header.go.html" . }}
+      {{ template "header.tmpl" . }}
 
       {{ block "main" . }}
         test
       {{ end }}
 
-      {{ template "footer.go.html" . }}
+      {{ template "footer.tmpl" . }}
     {{ end }}
   </body>
 </html>

@@ -10,9 +10,9 @@ import (
 )
 
 var tmplDirs = []string{
-	"templates/layouts/*.html",
-	"templates/partials/*.html",
-	"templates/pages/*.html",
+	"templates/layouts/*.tmpl",
+	"templates/partials/*.tmpl",
+	"templates/pages/*.tmpl",
 }
 var tmpl = template.Must(template.ParseFS(assets.TmplFiles, tmplDirs...))
 
@@ -21,7 +21,7 @@ func RedirectToIndex(w http.ResponseWriter, r *http.Request) {
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
-	tmpl.ExecuteTemplate(w, "layout.go.html", models.Page{
+	tmpl.ExecuteTemplate(w, "layout.tmpl", models.Page{
 		Title:    "Hello, world!",
 		Content:  "I am a page.",
 		PageData: repositories.GetTodos(),
