@@ -7,10 +7,14 @@
     <title>{{ .Title }}</title>
   </head>
   <body>
-    {{ template "header.go.html" . }}
+    {{ block "body" . }}
+      {{ template "header.go.html" . }}
 
-    {{ template "main" . }}
+      {{ block "main" . }}
+        test
+      {{ end }}
 
-    {{ template "footer.go.html" . }}
+      {{ template "footer.go.html" . }}
+    {{ end }}
   </body>
 </html>
