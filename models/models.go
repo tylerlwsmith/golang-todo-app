@@ -13,7 +13,7 @@ type Page struct {
 type Todo struct {
 	Id          int
 	Description string
-	Done        bool
+	Completed   bool
 	CreatedAt   time.Time
 	ModifiedAt  time.Time
 }
