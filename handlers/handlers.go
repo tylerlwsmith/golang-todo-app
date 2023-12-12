@@ -3,6 +3,7 @@ package handlers
 import (
 	"html/template"
 	"net/http"
+	"time"
 
 	"golang-todo-app/assets"
 	"golang-todo-app/models"
@@ -26,4 +27,14 @@ func Index(w http.ResponseWriter, r *http.Request) {
 		Content:  "I am a page.",
 		PageData: repositories.GetTodos(),
 	})
+}
+
+func Store(w http.ResponseWriter, r *http.Request) {
+	r.ParseForm()
+	repositories.StoreTodo(models.Todo{
+		Id:          int(time.Now().Unix()),
+		Description: r.PostFormValue("new-todo-description"),
+		Completed:   false,
+	})
+	http.Redirect(w, r, "/todos", http.StatusFound)
 }

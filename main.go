@@ -15,6 +15,7 @@ func main() {
 
 	r.HandleFunc("/", handlers.RedirectToIndex).Methods("GET")
 	r.HandleFunc("/todos", handlers.Index).Methods("GET")
+	r.HandleFunc("/todos", handlers.Store).Methods("POST")
 
 	p := os.Getenv("PORT")
 	if p == "" {

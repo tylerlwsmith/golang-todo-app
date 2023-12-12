@@ -3,6 +3,12 @@
 
   <p>{{ .Content }}</p>
 
+  <form action="/todos" method="post">
+    <label for="new-todo-description">Create Todo</label>
+    <input id="new-todo-description" type="text" name="new-todo-description" />
+    <button type="submit">Add Todo</button>
+  </form>
+
   <ul>
     {{ range .PageData }}
       <li>{{ .Description }}</li>
