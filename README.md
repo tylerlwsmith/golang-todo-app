@@ -28,6 +28,14 @@ After installing `air`, your machine may not have the binary in the `PATH`. You 
 alias air='$(go env GOPATH)/bin/air'
 ```
 
+If you're developing with VS Code and you want better support for `.tmpl` files, add the following to your `settings.json` file:
+
+```json
+"files.associations": {
+  "*.tmpl": "html"
+}
+```
+
 ## Issues
 
 The Go language server has trouble with build tags when developing on Linux. You can see the [LSP GitHub issue here](https://github.com/golang/go/issues/29202).
