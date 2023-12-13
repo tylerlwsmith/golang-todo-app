@@ -3,17 +3,17 @@
 
   <p>{{ .Content }}</p>
 
-  <form action="/todos" method="post">
-    <label for="new-todo-description">Create Todo</label>
-    <input id="new-todo-description" type="text" name="new-todo-description" autofocus>
-    <button type="submit">Add Todo</button>
+  <form action="/tasks" method="post">
+    <label for="new-task-description">Create Task</label>
+    <input id="new-task-description" type="text" name="new-task-description" autofocus>
+    <button type="submit">Add Task</button>
   </form>
 
   <ul>
     {{ range .PageData }}
       <li>
         {{ .Description }}
-        <form action="/todos/{{ .Id }}" method="post">
+        <form action="/tasks/{{ .Id }}" method="post">
           <input type="hidden" name="_method" value="DELETE">
           <button type="submit">Delete</button>
         </form>

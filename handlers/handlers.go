@@ -22,24 +22,24 @@ var tmplDirs = []string{
 var tmpl = template.Must(template.ParseFS(assets.TmplFiles, tmplDirs...))
 
 func RedirectToIndex(w http.ResponseWriter, r *http.Request) {
-	http.Redirect(w, r, "/todos", http.StatusSeeOther)
+	http.Redirect(w, r, "/tasks", http.StatusSeeOther)
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
 	tmpl.ExecuteTemplate(w, "layout.tmpl", models.Page{
 		Title:    "Hello, world!",
 		Content:  "I am a page.",
-		PageData: repositories.GetTodos(),
+		PageData: repositories.GetTasks(),
 	})
 }
 
 func Store(w http.ResponseWriter, r *http.Request) {
-	repositories.StoreTodo(models.Todo{
+	repositories.StoreTask(models.Task{
 		Id:          int(time.Now().Unix()),
-		Description: r.PostFormValue("new-todo-description"),
+		Description: r.PostFormValue("new-task-description"),
 		Completed:   false,
 	})
-	http.Redirect(w, r, "/todos", http.StatusFound)
+	http.Redirect(w, r, "/tasks", http.StatusFound)
 }
 
 func Delete(w http.ResponseWriter, r *http.Request) {
@@ -50,6 +50,6 @@ func Delete(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	repositories.DeleteTodo(id)
-	http.Redirect(w, r, "/todos", http.StatusFound)
+	repositories.DeleteTask(id)
+	http.Redirect(w, r, "/tasks", http.StatusFound)
 }

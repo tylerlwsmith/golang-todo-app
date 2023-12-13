@@ -15,9 +15,9 @@ func main() {
 	r := mux.NewRouter()
 
 	r.HandleFunc("/", handlers.RedirectToIndex).Methods("GET")
-	r.HandleFunc("/todos", handlers.Index).Methods("GET")
-	r.HandleFunc("/todos", handlers.Store).Methods("POST")
-	r.HandleFunc("/todos/{id}", handlers.Delete).Methods("DELETE")
+	r.HandleFunc("/tasks", handlers.Index).Methods("GET")
+	r.HandleFunc("/tasks", handlers.Store).Methods("POST")
+	r.HandleFunc("/tasks/{id}", handlers.Delete).Methods("DELETE")
 
 	p := os.Getenv("PORT")
 	if p == "" {

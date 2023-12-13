@@ -2,24 +2,24 @@ package repositories
 
 import "golang-todo-app/models"
 
-var todos = []models.Todo{}
+var tasks = []models.Task{}
 
-func GetTodos() []models.Todo {
-	return todos
+func GetTasks() []models.Task {
+	return tasks
 }
 
-func StoreTodo(todo models.Todo) (createdTodo models.Todo, err error) {
-	todos = append(todos, todo)
-	return todo, nil
+func StoreTask(task models.Task) (createdTask models.Task, err error) {
+	tasks = append(tasks, task)
+	return task, nil
 }
 
-func DeleteTodo(id int) {
-	filtered := []models.Todo{}
-	for _, todo := range todos {
-		if todo.Id != id {
-			filtered = append(filtered, todo)
+func DeleteTask(id int) {
+	filtered := []models.Task{}
+	for _, task := range tasks {
+		if task.Id != id {
+			filtered = append(filtered, task)
 		}
 	}
 
-	todos = filtered
+	tasks = filtered
 }

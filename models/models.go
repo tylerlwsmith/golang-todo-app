@@ -10,7 +10,7 @@ type Page struct {
 	PageData pageData
 }
 
-type Todo struct {
+type Task struct {
 	Id          int
 	Description string
 	Completed   bool
