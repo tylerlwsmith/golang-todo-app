@@ -11,7 +11,8 @@
 
   <ul>
     {{ range .PageData }}
-      <li>{{ .Description }}
+      <li>
+        {{ .Description }}
         <form action="/todos/{{ .Id }}" method="post">
           <input type="hidden" name="_method" value="DELETE">
           <button type="submit">Delete</button>
