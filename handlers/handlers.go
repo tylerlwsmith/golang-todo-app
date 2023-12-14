@@ -1,11 +1,9 @@
 package handlers
 
 import (
-	"html/template"
 	"net/http"
-	"time"
-
 	"strconv"
+	"time"
 
 	"github.com/gorilla/mux"
 
@@ -14,19 +12,14 @@ import (
 	"golang-todo-app/repositories"
 )
 
-var tmplDirs = []string{
-	"templates/layouts/*.tmpl",
-	"templates/partials/*.tmpl",
-	"templates/pages/*.tmpl",
-}
-var tmpl = template.Must(template.ParseFS(assets.TmplFiles, tmplDirs...))
+var indexTmpl = assets.MakeTmpl("templates/pages/index.tmpl")
 
 func RedirectToIndex(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/tasks", http.StatusSeeOther)
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
-	tmpl.ExecuteTemplate(w, "layout.tmpl", models.Page{
+	indexTmpl.ExecuteTemplate(w, "layout.tmpl", models.Page{
 		Title:    "Hello, world!",
 		Content:  "I am a page.",
 		PageData: repositories.GetTasks(),
