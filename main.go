@@ -17,6 +17,7 @@ func main() {
 	r.HandleFunc("/", handlers.RedirectToIndex).Methods("GET")
 	r.HandleFunc("/tasks", handlers.Index).Methods("GET")
 	r.HandleFunc("/tasks", handlers.Store).Methods("POST")
+	r.HandleFunc("/tasks/{id}", handlers.Edit).Methods("GET")
 	r.HandleFunc("/tasks/{id}", handlers.Delete).Methods("DELETE")
 
 	p := os.Getenv("PORT")

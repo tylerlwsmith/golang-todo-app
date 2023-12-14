@@ -13,6 +13,8 @@ import (
 )
 
 var indexTmpl = assets.MakeTmpl("templates/pages/index.tmpl")
+var editTmpl = assets.MakeTmpl("templates/pages/edit.tmpl")
+var notFoundTmpl = assets.MakeTmpl("templates/pages/404.tmpl")
 
 func RedirectToIndex(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/tasks", http.StatusSeeOther)
@@ -33,6 +35,35 @@ func Store(w http.ResponseWriter, r *http.Request) {
 		Completed:   false,
 	})
 	http.Redirect(w, r, "/tasks", http.StatusFound)
+}
+
+func Edit(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+
+	if err != nil {
+		w.WriteHeader(404)
+		notFoundTmpl.ExecuteTemplate(w, "layout.tmpl", models.Page{
+			Title: "Not Found",
+		})
+		return
+	}
+
+	todo, err := repositories.GetTask(id)
+
+	if err != nil {
+		w.WriteHeader(404)
+		notFoundTmpl.ExecuteTemplate(w, "layout.tmpl", models.Page{
+			Title: "Not Found",
+		})
+		return
+	}
+
+	editTmpl.ExecuteTemplate(w, "layout.tmpl", models.Page{
+		Title:    "Edit todo",
+		Content:  "Edit the todo below.",
+		PageData: todo,
+	})
 }
 
 func Delete(w http.ResponseWriter, r *http.Request) {

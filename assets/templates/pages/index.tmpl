@@ -5,7 +5,12 @@
 
   <form action="/tasks" method="post">
     <label for="new-task-description">Create Task</label>
-    <input id="new-task-description" type="text" name="new-task-description" autofocus>
+    <input
+      id="new-task-description"
+      type="text"
+      name="new-task-description"
+      autofocus
+    />
     <button type="submit">Add Task</button>
   </form>
 
@@ -13,8 +18,9 @@
     {{ range .PageData }}
       <li>
         {{ .Description }}
+        <a href="/tasks/{{ .Id }}">Edit</a>
         <form action="/tasks/{{ .Id }}" method="post">
-          <input type="hidden" name="_method" value="DELETE">
+          <input type="hidden" name="_method" value="DELETE" />
           <button type="submit">Delete</button>
         </form>
       </li>

@@ -1,0 +1,16 @@
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+
+  <p>{{ .Content }}</p>
+
+  <form action="/post/{{ .PageData.Id }}" method="POST">
+    <input type="hidden" name="_method" value="PUT" />
+    <input
+      type="text"
+      name="description"
+      value="{{ .PageData.Description }}"
+      autofocus
+    />
+    <button type="submit">Update Task</button>
+  </form>
+{{ end }}
