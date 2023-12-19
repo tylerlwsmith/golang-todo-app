@@ -21,7 +21,7 @@ func RedirectToIndex(w http.ResponseWriter, r *http.Request) {
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
-	indexTmpl.ExecuteTemplate(w, "layout.tmpl", models.Page{
+	indexTmpl.Render(w, r, models.Page{
 		Title:    "Hello, world!",
 		Content:  "I am a page.",
 		PageData: repositories.GetTasks(),
@@ -43,7 +43,7 @@ func Edit(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		w.WriteHeader(404)
-		notFoundTmpl.ExecuteTemplate(w, "layout.tmpl", models.Page{
+		notFoundTmpl.Render(w, r, models.Page{
 			Title: "Not Found",
 		})
 		return
@@ -53,17 +53,29 @@ func Edit(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		w.WriteHeader(404)
-		notFoundTmpl.ExecuteTemplate(w, "layout.tmpl", models.Page{
+		notFoundTmpl.Render(w, r, models.Page{
 			Title: "Not Found",
 		})
 		return
 	}
 
-	editTmpl.ExecuteTemplate(w, "layout.tmpl", models.Page{
+	editTmpl.Render(w, r, models.Page{
 		Title:    "Edit todo",
 		Content:  "Edit the todo below.",
 		PageData: todo,
 	})
+}
+
+func Update(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+
+	if err != nil {
+		print(id)
+	}
+
+	http.Redirect(w, r, "/tasks", http.StatusSeeOther)
+
 }
 
 func Delete(w http.ResponseWriter, r *http.Request) {
