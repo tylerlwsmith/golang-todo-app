@@ -31,7 +31,7 @@ func Index(w http.ResponseWriter, r *http.Request) {
 func Store(w http.ResponseWriter, r *http.Request) {
 	repositories.StoreTask(models.Task{
 		Id:          int(time.Now().Unix()),
-		Description: r.PostFormValue("new-task-description"),
+		Description: r.PostFormValue("description"),
 		Completed:   false,
 	})
 	http.Redirect(w, r, "/tasks", http.StatusFound)

@@ -4,13 +4,8 @@
   <p>{{ .Content }}</p>
 
   <form action="/tasks" method="post">
-    <label for="new-task-description">Create Task</label>
-    <input
-      id="new-task-description"
-      type="text"
-      name="new-task-description"
-      autofocus
-    />
+    <label for="description">Create Task</label>
+    <input id="description" type="text" name="description" autofocus />
     <button type="submit">Add Task</button>
   </form>
 
