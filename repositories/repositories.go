@@ -33,6 +33,11 @@ func StoreTask(task models.Task) (createdTask models.Task, err error) {
 	return task, nil
 }
 
+func UpdateTask(id int, task models.Task) (createdTask models.Task, err error) {
+
+	return task, nil
+}
+
 func DeleteTask(id int) {
 	filtered := []models.Task{}
 	for _, task := range tasks {
