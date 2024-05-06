@@ -69,16 +69,33 @@ func Edit(w http.ResponseWriter, r *http.Request) {
 func Update(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
-	r.PostFormValue("description")
+	newDescription := r.PostFormValue("description")
 
 	if err != nil {
 		print(id)
 	}
 
-	repositories.UpdateTask(id, models.Task{})
+	todo, err := repositories.GetTask(id)
+	if err != nil {
+		w.WriteHeader(404)
+		notFoundTmpl.Render(w, r, models.Page{
+			Title: "Not Found",
+		})
+		return
+	}
+
+	todo.Description = newDescription
+
+	_, err = repositories.UpdateTask(id, todo)
+	if err != nil {
+		w.WriteHeader(404)
+		notFoundTmpl.Render(w, r, models.Page{
+			Title: "Not Found",
+		})
+		return
+	}
 
 	http.Redirect(w, r, "/tasks", http.StatusSeeOther)
-
 }
 
 func Delete(w http.ResponseWriter, r *http.Request) {

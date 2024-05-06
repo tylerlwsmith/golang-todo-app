@@ -33,9 +33,21 @@ func StoreTask(task models.Task) (createdTask models.Task, err error) {
 	return task, nil
 }
 
-func UpdateTask(id int, task models.Task) (createdTask models.Task, err error) {
+func UpdateTask(id int, task models.Task) (updatedTask models.Task, err error) {
+	found := false
+	for i, t := range tasks {
+		if t.Id == id {
+			found = true
+			tasks[i] = task
+			break
+		}
+	}
 
-	return task, nil
+	if found != true {
+		err = errors.New("No task found")
+	}
+
+	return task, err
 }
 
 func DeleteTask(id int) {
