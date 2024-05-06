@@ -69,10 +69,13 @@ func Edit(w http.ResponseWriter, r *http.Request) {
 func Update(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
+	r.PostFormValue("description")
 
 	if err != nil {
 		print(id)
 	}
+
+	repositories.UpdateTask(id, models.Task{})
 
 	http.Redirect(w, r, "/tasks", http.StatusSeeOther)
 
