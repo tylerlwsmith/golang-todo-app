@@ -59,7 +59,7 @@ func main() {
 
 	go func() {
 		if err := s.Serve(l); err != nil {
-			log.Println(err)
+			// log.Println(err)
 		}
 	}()
 
@@ -80,6 +80,6 @@ func main() {
 	// Optionally, you could run srv.Shutdown in a goroutine and block on
 	// <-ctx.Done() if your application should wait for other services
 	// to finalize based on context cancellation.
-	log.Println("shutting down")
+	log.Println("Shutting down server...")
 	os.Exit(0)
 }
