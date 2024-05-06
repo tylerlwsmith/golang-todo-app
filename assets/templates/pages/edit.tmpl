@@ -3,7 +3,7 @@
 
   <p>{{ .Content }}</p>
 
-  <form action="/post/{{ .PageData.Id }}" method="POST">
+  <form action="/tasks/{{ .PageData.Id }}" method="POST">
     <input type="hidden" name="_method" value="PUT" />
     <input
       type="text"
