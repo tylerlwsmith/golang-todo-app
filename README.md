@@ -34,7 +34,7 @@ To begin developing, run the following command:
 air
 ```
 
-## VS Code template suuport
+## VS Code template support
 
 If you're developing with VS Code and you want better support for `.tmpl` files, add the following to your `settings.json` file:
 
